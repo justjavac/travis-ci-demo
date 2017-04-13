@@ -6,3 +6,5 @@ branches:
   only:
     - master
     - stable
+after_script:
+    - npm run coveralls

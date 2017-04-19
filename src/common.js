@@ -10,10 +10,7 @@ module.exports = function parseUrl(url = location.href) {
     .split('&')
     .map(x => x.split('='))
     .filter(x => x[0] !== '')
-    .reduce((obj, [key, value = '']) => {
-      const decodeValue = decodeURIComponent(value || '');
-      return Object.assign(obj, { [key]: decodeValue });
-    }, {});
+    .map(([key, value]) => ({ [key]: decodeURIComponent(value) }));
 
-  return params;
+  return Object.assign({}, ...params);
 };
